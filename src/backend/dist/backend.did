@@ -1,0 +1,166 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type SystemMetrics = 
+ record {
+   active_stores: nat;
+   paused_stores: nat;
+   total_clicks: nat;
+ };
+type StorePublic = 
+ record {
+   created_at: Timestamp;
+   enable_video_tour: bool;
+   is_active: bool;
+   logo_url: opt text;
+   status_notes: opt text;
+   store_id: StoreId;
+   store_name: text;
+   store_slug: text;
+   store_video_url: opt text;
+   whatsapp_number: text;
+ };
+type StoreInput = 
+ record {
+   logo_url: opt text;
+   store_name: text;
+   store_slug: text;
+   whatsapp_number: text;
+ };
+type StoreId = text;
+type StoreAdminView = 
+ record {
+   created_at: Timestamp;
+   is_active: bool;
+   owner_id: principal;
+   status_notes: opt text;
+   store_id: StoreId;
+   store_name: text;
+   store_slug: text;
+ };
+type Store = 
+ record {
+   created_at: Timestamp;
+   enable_video_tour: bool;
+   is_active: bool;
+   logo_url: opt text;
+   owner_id: principal;
+   status_notes: opt text;
+   store_id: StoreId;
+   store_name: text;
+   store_slug: text;
+   store_video_url: opt text;
+   whatsapp_number: text;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type ProductInput = 
+ record {
+   category: text;
+   image_url: text;
+   price: float64;
+   product_name: text;
+ };
+type ProductId = text;
+type Product = 
+ record {
+   category: text;
+   created_at: Timestamp;
+   image_url: text;
+   in_stock: bool;
+   price: float64;
+   product_id: ProductId;
+   product_name: text;
+   store_id: StoreId;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DateKey = text;
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type AnalyticsSummary = 
+ record {
+   daily: vec Analytics;
+   total_clicks: nat;
+   total_whatsapp_clicks: nat;
+ };
+type AnalyticsId = text;
+type Analytics = 
+ record {
+   analytics_id: AnalyticsId;
+   click_count: nat;
+   date: DateKey;
+   store_id: StoreId;
+   whatsapp_clicks: nat;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createProduct: (input: ProductInput) -> (Product);
+  deleteProduct: (productId: ProductId) -> (bool);
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getMyAnalytics: () -> (AnalyticsSummary) query;
+  getMyStore: () -> (opt Store) query;
+  getPublicProducts: (slug: text) -> (vec Product) query;
+  getPublicStore: (slug: text) -> (opt StorePublic) query;
+  getSystemMetrics: () -> (SystemMetrics) query;
+  isCallerAdmin: () -> (bool) query;
+  listAllStores: () -> (vec StoreAdminView) query;
+  recordStoreVisit: (slug: text) -> ();
+  recordWhatsappClick: (slug: text) -> ();
+  saveMyStore: (input: StoreInput) -> (Store);
+  schema: () -> (text) query;
+  setMyTour: (videoUrl: opt text, enabled: bool) -> (Store);
+  setProductInStock: (productId: ProductId, inStock: bool) -> (Product);
+  setStoreActive: (storeId: StoreId, active: bool, note: opt text) ->
+   (StoreAdminView);
+  updateProduct: (productId: ProductId, input: ProductInput) -> (Product);
+}

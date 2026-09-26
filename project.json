@@ -1,0 +1,24 @@
+{
+  "overview": "A mobile-first multi-tenant SaaS that lets wholesale traders publish a shareable product catalog and take orders over WhatsApp.",
+  "features": [
+    "Public zero-login storefront at a shareable link",
+    "Product gallery with category filters and instant search",
+    "One-tap WhatsApp order deep-links",
+    "Optional fullscreen virtual shop tour video",
+    "Merchant dashboard for store setup and product management",
+    "Image and video uploads for products and tours",
+    "Share tools with copy link and QR code",
+    "Admin panel with active/paused metrics and per-store pause control",
+    "Per-store click and WhatsApp order analytics"
+  ],
+  "category": "e-commerce",
+  "tags": [
+    "multi-tenant",
+    "saas",
+    "catalog",
+    "whatsapp",
+    "wholesale",
+    "mobile-first"
+  ],
+  "last_updated": "2026-09-26T18:00:21.761Z"
+}

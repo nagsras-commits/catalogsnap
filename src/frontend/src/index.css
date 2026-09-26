@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.875rem;
+
+    /* Warm paper base — commerce catalog, light-first */
+    --background: 0.985 0.006 95;
+    --foreground: 0.2 0.022 155;
+    --card: 1.0 0.002 95;
+    --card-foreground: 0.2 0.022 155;
+    --popover: 1.0 0.002 95;
+    --popover-foreground: 0.2 0.022 155;
+
+    /* Deep forest green — trust, money, "go" */
+    --primary: 0.47 0.108 158;
+    --primary-foreground: 0.985 0.01 158;
+
+    --secondary: 0.945 0.012 120;
+    --secondary-foreground: 0.28 0.03 155;
+    --muted: 0.945 0.012 120;
+    --muted-foreground: 0.5 0.02 150;
+
+    /* Electric lime — badges, highlights, live signals */
+    --accent: 0.88 0.19 118;
+    --accent-foreground: 0.24 0.06 118;
+
+    --destructive: 0.55 0.21 27;
+    --destructive-foreground: 0.985 0.008 27;
+
+    --success: 0.6 0.15 152;
+    --success-foreground: 0.985 0.008 152;
+    --warning: 0.8 0.14 82;
+    --warning-foreground: 0.3 0.07 82;
+
+    --border: 0.9 0.012 120;
+    --input: 0.9 0.012 120;
+    --ring: 0.47 0.108 158;
+
+    --chart-1: 0.47 0.108 158;
+    --chart-2: 0.74 0.16 118;
+    --chart-3: 0.62 0.14 55;
+    --chart-4: 0.55 0.12 220;
+    --chart-5: 0.68 0.15 20;
+
+    --sidebar: 0.965 0.01 120;
+    --sidebar-foreground: 0.22 0.025 155;
+    --sidebar-primary: 0.47 0.108 158;
+    --sidebar-primary-foreground: 0.985 0.01 158;
+    --sidebar-accent: 0.92 0.02 120;
+    --sidebar-accent-foreground: 0.28 0.03 155;
+    --sidebar-border: 0.88 0.014 120;
+    --sidebar-ring: 0.47 0.108 158;
+
+    /* Signature tokens */
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.5 0.11 158),
+      oklch(0.42 0.1 165)
+    );
+    --gradient-lime: linear-gradient(
+      135deg,
+      oklch(0.9 0.19 118),
+      oklch(0.84 0.19 128)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-subtle: 0 1px 2px 0 oklch(0.2 0.02 155 / 0.05), 0 1px 3px 0
+      oklch(0.2 0.02 155 / 0.04);
+    --shadow-elevated: 0 4px 12px -2px oklch(0.2 0.02 155 / 0.1), 0 2px 6px -2px
+      oklch(0.2 0.02 155 / 0.06);
+    --shadow-float: 0 12px 28px -6px oklch(0.2 0.02 155 / 0.22), 0 4px 10px -4px
+      oklch(0.2 0.02 155 / 0.12);
+  }
+
+  .dark {
+    --background: 0.16 0.018 158;
+    --foreground: 0.94 0.008 120;
+    --card: 0.2 0.02 158;
+    --card-foreground: 0.94 0.008 120;
+    --popover: 0.22 0.022 158;
+    --popover-foreground: 0.94 0.008 120;
+
+    --primary: 0.74 0.15 150;
+    --primary-foreground: 0.16 0.02 158;
+
+    --secondary: 0.25 0.022 158;
+    --secondary-foreground: 0.88 0.01 120;
+    --muted: 0.25 0.022 158;
+    --muted-foreground: 0.62 0.015 140;
+
+    --accent: 0.86 0.19 118;
+    --accent-foreground: 0.2 0.05 118;
+
+    --destructive: 0.62 0.2 25;
+    --destructive-foreground: 0.16 0.018 25;
+
+    --success: 0.7 0.16 152;
+    --success-foreground: 0.16 0.02 152;
+    --warning: 0.8 0.14 82;
+    --warning-foreground: 0.2 0.06 82;
+
+    --border: 0.3 0.022 158;
+    --input: 0.3 0.022 158;
+    --ring: 0.74 0.15 150;
+
+    --chart-1: 0.74 0.15 150;
+    --chart-2: 0.84 0.18 118;
+    --chart-3: 0.72 0.14 55;
+    --chart-4: 0.66 0.13 220;
+    --chart-5: 0.72 0.15 20;
+
+    --sidebar: 0.19 0.02 158;
+    --sidebar-foreground: 0.94 0.008 120;
+    --sidebar-primary: 0.74 0.15 150;
+    --sidebar-primary-foreground: 0.16 0.02 158;
+    --sidebar-accent: 0.25 0.022 158;
+    --sidebar-accent-foreground: 0.88 0.01 120;
+    --sidebar-border: 0.3 0.022 158;
+    --sidebar-ring: 0.74 0.15 150;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.72 0.15 150),
+      oklch(0.6 0.14 165)
+    );
+    --gradient-lime: linear-gradient(
+      135deg,
+      oklch(0.88 0.19 118),
+      oklch(0.8 0.19 128)
+    );
+    --shadow-subtle: 0 1px 2px 0 oklch(0 0 0 / 0.3), 0 1px 3px 0
+      oklch(0 0 0 / 0.24);
+    --shadow-elevated: 0 4px 12px -2px oklch(0 0 0 / 0.4), 0 2px 6px -2px
+      oklch(0 0 0 / 0.3);
+    --shadow-float: 0 12px 28px -6px oklch(0 0 0 / 0.55), 0 4px 10px -4px
+      oklch(0 0 0 / 0.4);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-lime {
+    background-image: var(--gradient-lime);
+  }
+
+  .shadow-subtle {
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .shadow-float {
+    box-shadow: var(--shadow-float);
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
